@@ -2,15 +2,18 @@
 
 using namespace std;
 
+void ShowMenu(string options[]) {
+	cout << options.length();
+}
+
 int main() {
 
-	string phrase = "vitor nascimento batista";
+	string options[] = {"Exit program", "Show A Multiple Table", "Learn A Multiple Table", "Practice A Multiple Table"};
 
-
-	cout << "Hello {phrase}" << endl;
-	cout << phrase.length() << endl;
-	cout << phrase.find("v", 0) << endl;
-	cout << phrase.substr(phrase.find("n", 4), 10) << endl;
+	while (true) {
+		ShowMenu(options);
+		break;
+	}
 
 	return 0;
 }

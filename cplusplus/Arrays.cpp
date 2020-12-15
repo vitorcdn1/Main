@@ -12,5 +12,9 @@ int main() {
 	cout << test[0] << endl;
 	cout << luckyNums[0] << endl;
 
+	for (int c = 0;c < 6;c++) {
+		cout << luckyNums[c] << " " << c << endl;
+	}
+
 	return 0;
 }
