@@ -1,4 +1,7 @@
 import os
 
-os.replace("/home/vitor/Videos/video do programa.mp4", "/home/vitor/Desktop/")
+content = os.listdir()
+
+print(content)
+#os.rename("C:\\Users\\vitor\\Downloads\\ka", "C:\\Users\\vitor\\Desktop\\ka")
 print("finalizado...")
