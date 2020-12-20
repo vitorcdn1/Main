@@ -4,7 +4,9 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter.messagebox import *
 
-
+print("Programa em desenvolvimento e pode apresentar bugs ...")
+print("blz fabricio")
+print(f"O seu sistema é {platform.platform()}")
 def ReturnSystem():
 	"""
 	Create a global variable with the slash of the system that you are using.
@@ -14,7 +16,7 @@ def ReturnSystem():
 
 	global sistema
 
-	if "Windows" in platform.platform():
+	if platform.platform() != "Linux":
 		sistema = Windows
 		print(sistema)
 		
@@ -90,38 +92,42 @@ def Organize():
 	os.chdir(directory)
 
 	try:
+		
+		os.mkdir("Pasta Organizada")
+		os.chdir("Pasta Organizada")
 
-		try:
-			os.mkdir("Pasta Organizada")
-		except:
-			os.chdir("Pasta Organizada")
-			
 		PathPastaOrganizada = directory + sistema + "Pasta Organizada"
 
 		for c in Ext:
 			os.mkdir(c)
-			for a in content:
+			print(content)
 
-				if os.path.splitext(a)[-1].replace(".", "") == c:
+			for a in content:
+				
+				if os.path.isdir(directory + sistema + a) == True and c == "pasta":	 # para mover as pastas
+					Lugar = directory + sistema + a
+					os.rename(Lugar, PathPastaOrganizada + sistema + "pasta" + sistema + a)
+					undo.append([Lugar, PathPastaOrganizada + sistema + "pasta" + sistema + a])
+
+				if os.path.splitext(a)[-1].replace(".", "") == c:				# para mover os arquivos com extenções
 
 					begin = directory
 					end = PathPastaOrganizada + sistema + c
 
+
 					os.rename(begin + sistema + a, end + sistema + a)
-					print(begin + sistema + a, end + sistema + a)
 					undo.append([begin + sistema + a, end + sistema + a])
+				
 
 	except Exception as err:
 		showerror(title = "Erro", message = "Pasta já foi organizada")
-		print(err)
-	
-	print(directory)
+		print(f"O erro foi ({err})")
 	
 def Undo():
 
 	for envio, receber in undo:
-		print(envio, receber)
 		os.rename(receber, envio)
+
 	
 root = Tk()
 root.title("Organizador")
