@@ -7,6 +7,8 @@ from tkinter.messagebox import *
 print("Programa em desenvolvimento e pode apresentar bugs ...")
 print("blz fabricio")
 print(f"O seu sistema é {platform.platform()}")
+
+
 def ReturnSystem():
 	"""
 	Create a global variable with the slash of the system that you are using.
@@ -49,7 +51,9 @@ def DirFile(Path, Content):
 				if os.path.splitext(c)[-1] != '':
 					exte.append(os.path.splitext(c)[-1].replace(".",""))
 				else:
-					exte.append("outros")
+					if "outros" not in exte:
+						exte.append("outros")
+
 			if len(dire) >= 1:
 				if "pasta" not in exte:
 					exte.append("pasta")
@@ -90,17 +94,22 @@ def Organize():
 	undo = list()
 
 	os.chdir(directory)
+	PathPastaOrganizada = directory + sistema + "Pasta Organizada"
 
 	try:
 		
-		os.mkdir("Pasta Organizada")
-		os.chdir("Pasta Organizada")
+		try:
+			os.mkdir("Pasta Organizada")
+			os.chdir("Pasta Organizada")
 
-		PathPastaOrganizada = directory + sistema + "Pasta Organizada"
+		except:
+			for c in Ext:
+				os.rmdir(PathPastaOrganizada + sistema + c)
+				
+			os.rmdir(PathPastaOrganizada)
+			os.mkdir("Pasta Organizada")
+			os.chdir("Pasta Organizada")
 
-		for c in Ext:
-			os.mkdir(c)
-			print(content)
 
 			for a in content:
 				
@@ -118,6 +127,10 @@ def Organize():
 					os.rename(begin + sistema + a, end + sistema + a)
 					undo.append([begin + sistema + a, end + sistema + a])
 				
+				if os.path.isfile(directory + sistema + a) == True and c == "outros":
+					Lugar = directory + sistema + a
+					os.rename(Lugar, PathPastaOrganizada + sistema + "outros" + sistema + a)
+					undo.append([Lugar, PathPastaOrganizada + sistema + "outros" + sistema + a])
 
 	except Exception as err:
 		showerror(title = "Erro", message = "Pasta já foi organizada")
