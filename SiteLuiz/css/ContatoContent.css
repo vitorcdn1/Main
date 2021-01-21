@@ -1,0 +1,75 @@
+main {
+        
+        text-align: center;
+}
+
+.ContatoContainer {
+        margin: auto;
+}
+
+.InfoContatos {
+
+        padding: 10px;
+        width: 50%;
+        margin: auto;
+
+}
+
+.InfoContatos li {
+
+	text-align: center;
+
+        border: 2px solid black;
+        border-radius: 50px;
+
+        list-style-position: inside;
+	list-style-type:none;
+
+        font-size: 25px;
+        font-family: "Architects Daughter";
+        font-weight: 900;
+        color: black;
+
+        margin-top: 10px;
+
+}
+
+li:hover {
+
+        background-color: black;
+        color: white;
+}
+
+.Gmail::before {
+
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-image: url(../imagens/RedesSociais/gmail.svg);
+	margin-right: 5px;
+}
+
+.Youtube::before {
+
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+        background-image: url(../imagens/RedesSociais/youtube.svg);
+	background-size: cover;
+	margin-right: 5px;
+	
+}
+
+.Instagram::before {
+
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+        background-image: url(../imagens/RedesSociais/instagram.svg);
+	background-size: cover;
+	margin-right: 5px;
+        
+}
